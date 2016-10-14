@@ -1,0 +1,88 @@
+
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Job title</th>
+        <th>Age</th>
+        <th>Nickname</th>
+        <th>Year</th>
+        <th>Employee?</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+
+
+            <td> {{employee.name}}</td>
+            <td> {{employee.job_title}}</td>
+            <td> {{employee.age}}</td>
+            <td> {{employee.nickname}}</td>
+            <td> {{employee.year}}</td>
+            <td>  {{employee.Employee}}</td>
+        <td><input type="button" (click)="deleteEmployee(employee._id)" value="Delete" class="btn btn-danger">
+            <input type="button" (click)="modal2.open()" value="Update" class="btn btn-info"></td>
+            <!--<button type="button" class="btn btn-default" (click)="mySecondModal.open()">Add new employee</button>-->
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+<button type="button" class="btn btn-default" (click)="Modal1.open()">Add new employee</button>
+
+<modal #Modal1>
+    <modal-header>
+        <h4 class="modal-title">New Employee</h4>
+    </modal-header>
+    <modal-body>
+        <form #myform="ngForm" class="well" (submit)="addEmployee($event)">
+            <div class="form-group">
+            <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Name...">
+            <input type="text" [(ngModel)]="job_title" name="job_title" class="form-control" placeholder="Job Title...">
+            <input type="text" [(ngModel)]="age" name="age" class="form-control" placeholder="Age...">
+            <input type="text" [(ngModel)]="nickname" name="nickname" class="form-control" placeholder="Nickname...">
+            <input type="text" [(ngModel)]="year" name="year" class="form-control" placeholder="Year...">
+             <label for="Employee">Is an employee?</label>
+                <input  type="checkbox" [(ngModel)]="Employee" id="Employee" name="Employee" class="form-control"
+                       [checked]="isAvailable" (change)="isAvailable = $event.target.checked" checked></div>
+
+
+        </form>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="Modal1.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (submit)="addEmployee($event)" (click)="Modal1.close()">Ok</button>
+
+    </modal-footer>
+</modal>
+
+<modal #Modal2 >
+    <modal-header>
+        <h4 class="modal-title">Update Employee</h4>
+    </modal-header>
+    <modal-body>
+        <form #myform="ngForm" class="well" >
+            <div class="form-group" >
+                <input  [(ngModel)]="name" name="name"  class="form-control" placeholder="name" >
+                <input  [(ngModel)]="job_title" name="job_title" class="form-control" placeholder="job_title">
+                <input  [(ngModel)]="age" name="age" class="form-control" placeholder="age">
+                <input  [(ngModel)]="nickname" name="nickname" class="form-control" placeholder="nickname">
+                <input  [(ngModel)]="year" name="year" class="form-control" placeholder="year">
+                <label for="Employee">Is an emmployee</label>
+                <input type="checkbox" [(ngModel)]="Employee" id="Employee" name="Employee" class="form-control"
+                       [checked]="isAvailable" (change)="isAvailable = $event.target.checked" checked>
+            </div>
+
+        </form>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="Modal2.dismiss()">Cancel</button>
+        <button type="button" class="btn btn-primary" (submit)="UpdateEmployee($event)" (click)="Modal2.close()">Ok</button>
+    </modal-footer>
+</modal>
+
+
